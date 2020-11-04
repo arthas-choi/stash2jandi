@@ -4,18 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean id="slackSettingsService"
-          class="com.pragbits.bitbucketserver.DefaultSlackSettingsService">
+    <bean id="jandiSettingsService"
+          class="com.prismsoft.bitbucketserver.DefaultJandiSettingsService">
         <constructor-arg index="0" ref="pluginSettingsFactory"/>
         <constructor-arg index="1" ref="permissionValidationService"/>
     </bean>
 
-    <bean id="slackGlobalSettingsService"
-          class="com.pragbits.bitbucketserver.DefaultGlobalSlackSettingsService">
+    <bean id="jandiGlobalSettingsService"
+          class="com.prismsoft.bitbucketserver.DefaultGlobalJandiSettingsService">
         <constructor-arg index="0" ref="pluginSettingsFactory"/>
     </bean>
 
-    <bean id="slackNotifier" class="com.pragbits.bitbucketserver.tools.SlackNotifier">
+    <bean id="jandiNotifier" class="com.prismsoft.bitbucketserver.tools.JandiNotifier">
     </bean>
 
 </beans>

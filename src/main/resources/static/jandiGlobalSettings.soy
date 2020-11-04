@@ -1,0 +1,158 @@
+{namespace bitbucketserver.page.jandi.global.settings}
+
+/**
+ * @param jandiGlobalWebHookUrl
+ * @param jandiNotificationsEnabled
+ * @param jandiNotificationsOpenedEnabled
+ * @param jandiNotificationsReopenedEnabled
+ * @param jandiNotificationsUpdatedEnabled
+ * @param jandiNotificationsApprovedEnabled
+ * @param jandiNotificationsUnapprovedEnabled
+ * @param jandiNotificationsDeclinedEnabled
+ * @param jandiNotificationsMergedEnabled
+ * @param jandiNotificationsCommentedEnabled
+ * @param jandiNotificationsNeedsWorkEnabled
+ * @param jandiNotificationsEnabledForPush
+ * @param jandiNotificationsEnabledForPersonal
+ * @param notificationLevel
+ * @param notificationPrLevel
+ * @param notificationLevels
+ **/
+{template .viewGlobalJandiSettings}
+<html>
+    <head>
+        <title>Global jandi settings</title>
+        <meta name="decorator" content="atl.admin">
+        <meta name="activeTab" content="global-settings-jandi-settings">
+    </head>
+    <body>
+        {call widget.aui.pageHeader}
+            {param content}
+                <h2>{getText('stash2jandi.global.settings.heading')}</h2>
+            {/param}
+        {/call}
+
+        {call widget.aui.form.form}
+            {param action: '' /}
+            {param content}
+
+                <h4>Pull request notifications</h4>
+                {call widget.aui.form.checkbox}
+                    {param id: 'jandiNotificationsEnabled' /}
+                    {param labelContent: getText('stash2jandi.global.settings.jandi.enabled.label') /}
+                    {param checked: $jandiNotificationsEnabled /}
+                    {param description: getText('stash2jandi.global.settings.jandi.enabled.description') /}
+                {/call}
+
+                {call aui.form.selectField}
+                    {param id: 'jandiNotificationPrLevel' /}
+                    {param labelContent: getText('stash2jandi.global.settings.notification.pr.level.label') /}
+                    {param value: $notificationPrLevel /}
+                    {param options: $notificationLevels /}
+                {/call}
+
+
+                <div style="padding-left: 20px;">
+                    <p>Filter pull request events based on activity types</p>
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsOpenedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.opened.enabled.label') /}
+                        {param checked: $jandiNotificationsOpenedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.opened.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsReopenedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.reopened.enabled.label') /}
+                        {param checked: $jandiNotificationsReopenedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.reopened.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsUpdatedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.updated.enabled.label') /}
+                        {param checked: $jandiNotificationsUpdatedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.updated.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsApprovedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.approved.enabled.label') /}
+                        {param checked: $jandiNotificationsApprovedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.approved.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsUnapprovedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.unapproved.enabled.label') /}
+                        {param checked: $jandiNotificationsUnapprovedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.unapproved.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsDeclinedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.declined.enabled.label') /}
+                        {param checked: $jandiNotificationsDeclinedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.declined.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsMergedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.merged.enabled.label') /}
+                        {param checked: $jandiNotificationsMergedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.merged.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsCommentedEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.commented.enabled.label') /}
+                        {param checked: $jandiNotificationsCommentedEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.commented.enabled.description') /}
+                    {/call}
+                    {call widget.aui.form.checkbox}
+                        {param id: 'jandiNotificationsNeedsWorkEnabled' /}
+                        {param labelContent: getText('stash2jandi.global.settings.jandi.needs.work.enabled.label') /}
+                        {param checked: $jandiNotificationsNeedsWorkEnabled /}
+                        {param description: getText('stash2jandi.global.settings.jandi.needs.work.enabled.description') /}
+                    {/call}
+                </div>
+
+                <h4>Push notifications</h4>
+
+                {call widget.aui.form.checkbox}
+                    {param id: 'jandiNotificationsEnabledForPush' /}
+                    {param labelContent: getText('stash2jandi.global.settings.jandi.push.enabled.label') /}
+                    {param checked: $jandiNotificationsEnabledForPush /}
+                    {param description: getText('stash2jandi.global.settings.jandi.push.enabled.description') /}
+                {/call}
+                {call aui.form.selectField}
+                    {param id: 'jandiNotificationLevel' /}
+                    {param labelContent: getText('stash2jandi.global.settings.jandi.notification.level.label') /}
+                    {param value: $notificationLevel /}
+                    {param options: $notificationLevels /}
+                {/call}
+
+                <h4>Personal notifications enabled</h4>
+
+                {call widget.aui.form.checkbox}
+                    {param id: 'jandiNotificationsEnabledForPersonal' /}
+                    {param labelContent: getText('stash2jandi.global.settings.jandi.personal.enabled.label') /}
+                    {param checked: $jandiNotificationsEnabledForPersonal /}
+                    {param description: getText('stash2jandi.global.settings.jandi.personal.enabled.description') /}
+                {/call}
+
+                <h4>Webhook Configuration</h4>
+                {call widget.aui.form.text}
+                    {param id: 'jandiGlobalWebHookUrl' /}
+                    {param labelContent: getText('stash2jandi.global.settings.jandi.webhookurl') /}
+                    {param initialValue: $jandiGlobalWebHookUrl /}
+                    {param description: getText('stash2jandi.global.settings.jandi.webhook.description') /}
+                {/call}
+
+                {call aui.form.buttons}
+                    {param content}
+                        {call aui.form.submit}
+                            {param id: 'bitbucketserver.web.jandi.global.settings.submit' /}
+                            {param text: getText('stash2jandi.global.settings.jandi.submit') /}
+                            {param type: 'submit' /}
+                        {/call}
+                    {/param}
+                {/call}
+            {/param}
+        {/call}
+    </body>
+</html>
+{/template}

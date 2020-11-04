@@ -1,7 +1,9 @@
-# Stash2Slack (for Bitbucket Server)
+# Jandi-Notifier (for Bitbucket Server)
+이 프로젝트는 stask2slack의 fork Repository입니다.
+
 
 Plugin subscribes to Bitbucket Server events and send notifications to
-Slack channels.
+Jandi Topic.
 
 Currently the following events are supported:
 
@@ -15,24 +17,24 @@ the manage addons page.
 
 ## Configuration
 
-You need to create an incoming web hook in slack. That will give you the
+You need to create an incoming web hook in jandi. That will give you the
 hook url and the default channel name. Notifications will go to the
-defaul slack channel, unless you override them in the configuration for
+defaul jandi channel, unless you override them in the configuration for
 a given repository.
 
 You can enter the webhook url in the global settings. Just go to
-http://your.stash.host/plugins/servlet/slack-global-settings/admin and
+http://your.stash.host/plugins/servlet/jandi-global-settings/admin and
 edit the hook url.
 
 The global settings can be set up for both push notifications and for pull requests.
 Then, for each repository those settings can be overriden if needed.
 
 Pull requests can be further filtered by events (opened, commented, etc). Also, notifications can be verbose,
-compact or minimal to slack.
+compact or minimal to jandi.
 
 ## Contributing
 
-Stash2Slack is built using Atlassian SDK, here's some info on that...
+Stash2Jandi is built using Atlassian SDK, here's some info on that...
 
 Here are the SDK commands you'll use immediately:
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<atlassian-plugin key="com.pragbits.stash.${project.artifactId}" name="${project.name}" plugins-version="2">
+<atlassian-plugin key="com.prismsoft.bitbucketserver.${project.artifactId}" name="${project.name}" plugins-version="2">
 
   <plugin-info>
     <description>${project.description}</description>
@@ -15,19 +15,19 @@
 
   </plugin-info>
   <!-- add our web resources -->
-  <web-resource key="slash2stack-resources" name="slash2stack Web Resources">
+  <web-resource key="stask2jandi-resources" name="stask2jandi Web Resources">
     <dependency>com.atlassian.auiplugin:ajs</dependency>
     <resource type="download" name="images/" location="/images"/>
-    <context>slash2stack</context>
+    <context>stask2jandi</context>
   </web-resource>
   
-  <component key="pull-request-activity-listener" class="com.pragbits.bitbucketserver.components.PullRequestActivityListener">
+  <component key="pull-request-activity-listener" class="com.prismsoft.bitbucketserver.components.PullRequestActivityListener">
   </component>
 
-  <component key="push-activity-listener" class="com.pragbits.bitbucketserver.components.RepositoryPushActivityListener">
+  <component key="push-activity-listener" class="com.prismsoft.bitbucketserver.components.RepositoryPushActivityListener">
   </component>
 
-  <resource type="i18n" name="i18n" location="i18n/stash2slack"/>
+  <resource type="i18n" name="i18n" location="i18n/stash2jandi"/>
   
   <client-resource key="soy-templates">
    <directory location="/static/">
@@ -36,24 +36,24 @@
    <dependency>com.atlassian.bitbucket.server.bitbucket-web:server-soy-templates</dependency>
   </client-resource>
 
-  <web-item key="repository-settings-slack-settings" weight="30" section="bitbucket.repository.settings.panel/repository-settings-addons-section">
-   <label key="bitbucket.server.web.repository.settings.tab.slack.settings">Slack settings</label>
-   <tooltip key="bitbucket.web.repository.settings.tab.slack.settings.tooltip">Configure whether you want slack notifications</tooltip>
-   <link>${navBuilder.pluginServlets().path('slack-settings', 'projects', $project.key, 'repos', $repository.slug).buildRelNoContext()}</link>
+  <web-item key="repository-settings-jandi-settings" weight="30" section="bitbucket.repository.settings.panel/repository-settings-addons-section">
+   <label key="bitbucket.server.web.repository.settings.tab.jandi.settings">Jandi settings</label>
+   <tooltip key="bitbucket.web.repository.settings.tab.jandi.settings.tooltip">Configure whether you want jandi notifications</tooltip>
+   <link>${navBuilder.pluginServlets().path('jandi-settings', 'projects', $project.key, 'repos', $repository.slug).buildRelNoContext()}</link>
   </web-item>
 
-  <web-item key="global-settings-slack-settings" weight="30" section="atl.admin/admin-settings-section">
-   <label key="bitbucket.server.web.admin.settings.tab.slack.admin.settings">Bitbucket Server 2 Slack settings</label>
-   <tooltip key="bitbucket.web.admin.settings.tab.slack.admin.settings.tooltip">Configure global settings for slack notifications</tooltip>
-   <link>/plugins/servlet/slack-global-settings/admin</link>
+  <web-item key="global-settings-jandi-settings" weight="30" section="atl.admin/admin-settings-section">
+   <label key="bitbucket.server.web.admin.settings.tab.jandi.admin.settings">Bitbucket Server 2 Jandi settings</label>
+   <tooltip key="bitbucket.web.admin.settings.tab.jandi.admin.settings.tooltip">Configure global settings for jandi notifications</tooltip>
+   <link>/plugins/servlet/jandi-global-settings/admin</link>
   </web-item>
 
-  <servlet key="slack-settings-servlet" class="com.pragbits.bitbucketserver.SlackSettingsServlet">
-   <url-pattern>/slack-settings/*</url-pattern>
+  <servlet key="jandi-settings-servlet" class="com.prismsoft.bitbucketserver.JandiSettingsServlet">
+   <url-pattern>/jandi-settings/*</url-pattern>
   </servlet>
 
-  <servlet key="slack-global-settings-servlet" class="com.pragbits.bitbucketserver.SlackGlobalSettingsServlet">
-   <url-pattern>/slack-global-settings/admin</url-pattern>
+  <servlet key="jandi-global-settings-servlet" class="com.prismsoft.bitbucketserver.JandiGlobalSettingsServlet">
+   <url-pattern>/jandi-global-settings/admin</url-pattern>
   </servlet>
 
 </atlassian-plugin>

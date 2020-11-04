@@ -1,0 +1,61 @@
+package com.prismsoft.bitbucketserver.tools;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class JandiNotifier {
+
+    private final CloseableHttpClient httpClient = HttpClients.createSystem();
+    private static final Logger log = LoggerFactory.getLogger(JandiNotifier.class);
+
+    public  JandiNotifier() {
+
+    }
+
+    public void SendJandiNotification(String targetUrl, String jsonString) {
+        try {
+            /*
+            RequestConfig requestConfig = RequestConfig.custom()
+                    .setConnectionRequestTimeout(15000)
+                    .setConnectTimeout(15000)
+                    .setSocketTimeout(15000)
+                    .build();
+            */
+
+            HttpPost httpPost = new HttpPost(targetUrl);
+
+            httpPost.addHeader(HttpHeaders.ACCEPT,"application/vnd.tosslab.jandi-v2+json");
+            httpPost.addHeader(HttpHeaders.CONTENT_TYPE, "application/json");
+
+            log.debug("JandiNotifier targetUrl: " + targetUrl + ", jsonString" + jsonString);
+
+            httpPost.setEntity(new StringEntity(jsonString, ContentType.APPLICATION_JSON));
+            CloseableHttpResponse response = httpClient.execute(httpPost);
+            try {
+                if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                    HttpEntity entity = response.getEntity();
+                    String responseString = EntityUtils.toString(entity, "UTF-8");
+                    log.error("#error during httpPost in JandiNotifier: " + responseString);
+                    log.error("\tstatus code: " + response.getStatusLine().getStatusCode());
+                    log.error("\tstatus reason: " + response.getStatusLine().getReasonPhrase());
+                    log.error("\tpayload string: " + jsonString);
+                }
+            } finally {
+                response.close();
+            }
+        } catch (Exception e) {
+            log.error("#error during http request execution in JandiNotifier: ", e);
+        }
+    }
+}
